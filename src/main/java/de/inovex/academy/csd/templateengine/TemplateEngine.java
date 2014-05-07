@@ -1,18 +1,34 @@
 package de.inovex.academy.csd.templateengine;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class TemplateEngine {
-	
-	private String tmpl;
 
-	public TemplateEngine(String tmpl) {
-		this.tmpl = tmpl;
-	}
+    private String tmpl;
 
-	public String render(HashMap<String, String> hashMap) {
-		// TODO Auto-generated method stub
-		return "hallo";
-	}
+    public TemplateEngine(String tmpl) {
+        this.tmpl = tmpl;
+    }
+
+    public String render(Map<String, String> params) throws Exception {
+        // TODO Auto-generated method stub
+
+        StringBuilder sb = new StringBuilder(this.tmpl);
+
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+
+            String toSearch = "${" + key + "}";
+            int start = sb.indexOf(toSearch);
+            if (start < 0) {
+                throw new Exception("Key " + key + " not found");
+            }
+            int end = start + toSearch.length();
+            sb.replace(start, end, value);
+        }
+
+        return sb.toString();
+    }
 
 }
