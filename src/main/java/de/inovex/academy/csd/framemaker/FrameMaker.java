@@ -7,18 +7,25 @@ import org.apache.commons.lang3.StringUtils;
 
 public class FrameMaker {
 
-    
     public List<String> makeFrame(List<String> lines) {
         ArrayList<String> frameLines = new ArrayList<>();
         int maxLen = maxLen(lines);
-        String block = blockLine("", maxLen, '*');
-        
-        frameLines.add(block);
+
+        frameLines.add(makeBlock(maxLen));
         for (String line : lines) {
-            frameLines.add(blockLine(line, maxLen, ' '));
+            frameLines.add(makeLine(line, maxLen));
         }
-        frameLines.add(block);
+        frameLines.add(makeBlock(maxLen));
+        
         return frameLines;
+    }
+
+    private String makeLine(String line, int maxLen) {
+        return blockLine(line, maxLen, ' ');
+    }
+
+    private String makeBlock(int maxLen) {
+        return blockLine("", maxLen, '*');
     }
 
     private String blockLine(String in, int len, char padChar) {
