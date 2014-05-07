@@ -10,7 +10,7 @@ public class TemplateEngine {
         this.tmpl = tmpl;
     }
 
-    public String render(Map<String, String> params) throws Exception {
+    public String render(Map<String, String> params) throws IllegalArgumentException {
         // TODO Auto-generated method stub
 
         StringBuilder sb = new StringBuilder(this.tmpl);
@@ -22,7 +22,7 @@ public class TemplateEngine {
             String toSearch = "${" + key + "}";
             int start = sb.indexOf(toSearch);
             if (start < 0) {
-                throw new Exception("Key " + key + " not found");
+                throw new IllegalArgumentException("Key " + key + " not found");
             }
             int end = start + toSearch.length();
             sb.replace(start, end, value);
