@@ -14,11 +14,25 @@ public class FrameMakerTest {
 	private FrameMaker fm = new FrameMaker();
 
 	@Test
-	public void testFrame() {
+	public void testFrameSimple() {
 		List<String> frame = fm.makeFrame(Arrays.asList("x"));
 		assertNotNull(frame);
 
 		assertEquals(3, frame.size());
 		assertThat(frame, equalTo(Arrays.asList("***", "*x*", "***")));
+	}
+	
+	@Test
+	public void testFrameComplex() {
+		List<String> frame = fm.makeFrame(Arrays.asList("Hallo", "schöne, neue", "Welt"));
+		assertNotNull(frame);
+		
+		assertEquals(5, frame.size());
+		assertThat(frame, equalTo(Arrays.asList(
+				"**************", 
+				"*Hallo       *", 
+				"*schöne, neue*",
+				"*Welt        *",
+				"**************")));
 	}
 }
