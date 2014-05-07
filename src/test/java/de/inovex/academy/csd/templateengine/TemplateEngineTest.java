@@ -30,6 +30,7 @@ public class TemplateEngineTest {
 		params.put("name", "ein sehr langer Name");
 		assertEquals("hallo ein sehr langer Name", tmpl.render(params));
 	}
+
 	@Test
 	public void testWithParameterWithExpectedError() throws Exception {
 		TemplateEngine tmpl = new TemplateEngine("hallo ${name}");
@@ -44,6 +45,7 @@ public class TemplateEngineTest {
 		}
 
 	}
+
 	@Test
 	public void testWithMissingParameterWithExpectedError() throws Exception {
 		TemplateEngine tmpl = new TemplateEngine("hallo ${name} ${flup}");
