@@ -28,7 +28,14 @@ public class TemplateEngine {
             sb.replace(start, end, value);
         }
 
-        return sb.toString();
+        String filledTemplate = sb.toString();
+        
+        if (filledTemplate.matches(".*[$][{][^}]+[}].*")) {
+        	throw new IllegalArgumentException("Unmatched variables!");
+        	
+        }
+        
+		return filledTemplate;
     }
 
 }
