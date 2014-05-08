@@ -1,1 +1,3 @@
-@echo Hallo Skeletton
+@echo off
+call mvn -DskipTests package>mvn-log.txt
+call java -cp target\\Day4-0.0.1-SNAPSHOT.jar de.inovex.academy.csd.Skeletton Skelettor
